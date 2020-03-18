@@ -1,5 +1,10 @@
-const knex = require('knex'); //import knex
-const knexfile = require('../knexfile'); //import the knex file
+const knex = require("knex");
 
+const knexfile = require("../knexfile.js");
 
-module.exports = knex(knexfile); //export knex
+const environment = process.env.NODE_ENV || "development";
+
+const knexConfig = knexfile[environment];
+
+// db represents a live connection to the database
+module.exports = knex(knexConfig);
